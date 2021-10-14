@@ -1,0 +1,93 @@
+body {
+    background-color: rgb(5, 5, 51);
+    color: aliceblue;
+    font-family: "Georama", sans-serif;
+  }
+  .heading {
+    font-size: 50px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: underline;
+  }
+  .popular{
+    padding: 10px;
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 50px;
+  }
+  input {
+    width: 350px;
+    font-size: 25px;
+    outline: none;
+    position: absolute;
+    top: 10%;
+    right: 3%;
+    border: none;
+    border-radius: 5px;
+    padding: 2px 10px;
+  }
+  #search-movie {
+    position: absolute;
+    top: 18%;
+    right: 2%;
+    margin-top: 0;
+    width: 400px;
+    height: 300px;
+    overflow: auto;
+    text-align: left;
+  }
+  .movie-list:hover {
+    background-color: rgb(39, 39, 129);
+  }
+  .movie-list {
+    display: flex;
+    height: 100px;
+    margin: 10px 5px;
+    text-justify: auto;
+    cursor: pointer;
+  }
+  .movie-list > img {
+    display: inline-block;
+    height: 100%;
+    width: 100px;
+  }
+  .movie-list > div > p {
+    margin: 5px 8px;
+    padding: 2px;
+  }
+  #movie-details {
+    display: flex;
+    width: 800px;
+    height: 400px;
+    padding: 2%;
+  }
+  #movie-details > img {
+    height: 100%;
+    border-radius: 5px;
+  }
+  #movie-details > div {
+    padding: 10px;
+  }
+  #popular-movies {
+    display: grid;
+    grid-template-columns: repeat(5, 18%);
+    justify-content: space-between;
+  }
+  #popular-movies >div{
+    cursor: pointer;
+    height: 550px;
+    margin-bottom: 15%;
+  }
+  #popular-movies >div >p{
+      padding: 0% 15px;
+  }
+  #popular-movies >div >h3{
+      padding: 0% 15px;
+  }
+  #popular-movies >div:hover{
+    background-color: rgb(24, 164, 219);
+    color: black;
+  }
+  #popular-movies > div > img {
+    width: 100%;
+  }
