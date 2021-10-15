@@ -10,79 +10,8 @@
       href="https://fonts.googleapis.com/css2?family=Public+Sans&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="style.css" />
     <title>Youtube</title>
-    <style>
-      body {
-        font-family: "Public Sans", sans-serif;
-      }
-      #navbar {
-        height: 50px;
-      }
-      #menusymbol {
-        position: relative;
-        left: 25px;
-        height: auto;
-      }
-      #ytsymbol {
-        position: relative;
-        top: 11px;
-        left: 50px;
-        height: 50px;
-      }
-      #searchbar {
-        position: relative;
-        left: 200px;
-        width: 500px;
-        height: 30px;
-        outline: none;
-        font-size: 17px;
-      }
-      #search-btn {
-        position: relative;
-        top: 7px;
-        left: 195px;
-        width: 70px;
-      }
-      #search-btn > img {
-        height: 27px;
-      }
-      #microphone {
-        position: relative;
-        top: 11px;
-        left: 205px;
-        height: 35px;
-      }
-      #menuicon {
-        position: relative;
-        top: 11px;
-        left: 300px;
-        width: 35px;
-      }
-      #bell {
-        position: relative;
-        width: 30px;
-        top: 11px;
-        left: 350px;
-      }
-      #acc-name {
-        display: inline-block;
-        margin: 0%;
-        position: relative;
-        left: 400px;
-        border-radius: 50%;
-        background-color: rgb(179, 10, 10);
-        color: aliceblue;
-        font-size: 30px;
-        width: 35px;
-        text-align: center;
-      }
-      #videos {
-        margin: 100px 30px 0 30px;
-        display: grid;
-        grid-template-columns: repeat(4, 20%);
-        grid-gap: 5%;
-      }
-    </style>
   </head>
   <body>
     <nav>
@@ -123,53 +52,4 @@
   </body>
 </html>
 
-<script>
-  async function popularvideos() {
-    let res = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=IN&key=AIzaSyDU699faiwdFwLpcWGeWVS3aMgvvdRf1w0&maxResults=20`
-    );
-
-    let data = await res.json();
-
-    appendvideos(data);
-  }
-
-  let videos = document.getElementById("videos");
-
-  function appendvideos({ items }) {
-    videos.innerHTML = null;
-
-    items.forEach((v) => {
-      let div = document.createElement("div");
-
-      let yt = document.createElement("div");
-
-      if (v.id.length === 11) {
-        yt.innerHTML = `<iframe width="300" height="200" src="https://www.youtube.com/embed/${v.id}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-        div.style.marginTop = "20px";
-      } else{
-        yt.innerHTML = `<iframe width="300" height="200" src="https://www.youtube.com/embed/${v.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-        div.style.marginTop = "20px";
-      }
-
-      let yttitle = document.createElement("h3");
-      yttitle.textContent = v.snippet.title;
-      div.append(yt, yttitle);
-      videos.append(div);
-    });
-  }
-
-  popularvideos();
-
-  async function search() {
-    let query = document.getElementById("searchbar").value;
-
-    let res = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDU699faiwdFwLpcWGeWVS3aMgvvdRf1w0&maxResults=20&type=video&q=${query}`
-    );
-
-    let data = await res.json();
-
-    appendvideos(data);
-  }
-</script>
+<script src="script.js"></script>

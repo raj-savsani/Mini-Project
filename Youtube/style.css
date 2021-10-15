@@ -1,0 +1,70 @@
+body {
+  font-family: "Public Sans", sans-serif;
+}
+#navbar {
+  height: 50px;
+}
+#menusymbol {
+  position: relative;
+  left: 25px;
+  height: auto;
+}
+#ytsymbol {
+  position: relative;
+  top: 11px;
+  left: 50px;
+  height: 50px;
+}
+#searchbar {
+  position: relative;
+  left: 200px;
+  width: 500px;
+  height: 30px;
+  outline: none;
+  font-size: 17px;
+}
+#search-btn {
+  position: relative;
+  top: 7px;
+  left: 195px;
+  width: 70px;
+}
+#search-btn > img {
+  height: 27px;
+}
+#microphone {
+  position: relative;
+  top: 11px;
+  left: 205px;
+  height: 35px;
+}
+#menuicon {
+  position: relative;
+  top: 11px;
+  left: 300px;
+  width: 35px;
+}
+#bell {
+  position: relative;
+  width: 30px;
+  top: 11px;
+  left: 350px;
+}
+#acc-name {
+  display: inline-block;
+  margin: 0%;
+  position: relative;
+  left: 400px;
+  border-radius: 50%;
+  background-color: rgb(179, 10, 10);
+  color: aliceblue;
+  font-size: 30px;
+  width: 35px;
+  text-align: center;
+}
+#videos {
+  margin: 100px 30px 0 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 20%);
+  grid-gap: 5%;
+}
