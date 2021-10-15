@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <title>Youtube</title>
+    <style>
+      body {
+        font-family: "Public Sans", sans-serif;
+      }
+      #navbar {
+        height: 50px;
+      }
+      #menusymbol {
+        position: relative;
+        left: 25px;
+        height: auto;
+      }
+      #ytsymbol {
+        position: relative;
+        top: 11px;
+        left: 50px;
+        height: 50px;
+      }
+      #searchbar {
+        position: relative;
+        left: 200px;
+        width: 500px;
+        height: 30px;
+        outline: none;
+        font-size: 17px;
+      }
+      #search-btn {
+        position: relative;
+        top: 7px;
+        left: 195px;
+        width: 70px;
+      }
+      #search-btn > img {
+        height: 27px;
+      }
+      #microphone {
+        position: relative;
+        top: 11px;
+        left: 205px;
+        height: 35px;
+      }
+      #menuicon {
+        position: relative;
+        top: 11px;
+        left: 300px;
+        width: 35px;
+      }
+      #bell {
+        position: relative;
+        width: 30px;
+        top: 11px;
+        left: 350px;
+      }
+      #acc-name {
+        display: inline-block;
+        margin: 0%;
+        position: relative;
+        left: 400px;
+        border-radius: 50%;
+        background-color: rgb(179, 10, 10);
+        color: aliceblue;
+        font-size: 30px;
+        width: 35px;
+        text-align: center;
+      }
+      #videos {
+        margin: 100px 30px 0 30px;
+        display: grid;
+        grid-template-columns: repeat(4, 20%);
+        grid-gap: 5%;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div id="navbar">
+        <img
+          id="menusymbol"
+          src="https://img.icons8.com/material-two-tone/24/000000/menu--v1.png"
+        />
+
+        <img
+          id="ytsymbol"
+          src="https://1000logos.net/wp-content/uploads/2017/05/Youtube-logo.jpg"
+          alt=""
+        />
+
+        <input id="searchbar" type="text" />
+        <button onclick="search()" id="search-btn">
+          <img
+            src="https://img.icons8.com/ios-glyphs/30/000000/search--v1.png"
+          />
+        </button>
+        <img
+          id="microphone"
+          src="https://img.icons8.com/material-sharp/48/000000/microphone--v1.png"
+        />
+        <img
+          id="menuicon"
+          src="https://img.icons8.com/ios/50/000000/circled-menu.png"
+        />
+        <img
+          id="bell"
+          src="https://img.icons8.com/material-sharp/24/000000/bell.png"
+        />
+        <p id="acc-name">R</p>
+      </div>
+    </nav>
+    <div id="videos"></div>
+  </body>
+</html>
+
+<script>
+  async function popularvideos() {
+    let res = await fetch(
+      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=IN&key=AIzaSyDU699faiwdFwLpcWGeWVS3aMgvvdRf1w0&maxResults=20`
+    );
+
+    let data = await res.json();
+
+    appendvideos(data);
+  }
+
+  let videos = document.getElementById("videos");
+
+  function appendvideos({ items }) {
+    videos.innerHTML = null;
+
+    items.forEach((v) => {
+      let div = document.createElement("div");
+
+      let yt = document.createElement("div");
+
+      if (v.id.length === 11) {
+        yt.innerHTML = `<iframe width="300" height="200" src="https://www.youtube.com/embed/${v.id}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        div.style.marginTop = "20px";
+      } else{
+        yt.innerHTML = `<iframe width="300" height="200" src="https://www.youtube.com/embed/${v.id.videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        div.style.marginTop = "20px";
+      }
+
+      let yttitle = document.createElement("h3");
+      yttitle.textContent = v.snippet.title;
+      div.append(yt, yttitle);
+      videos.append(div);
+    });
+  }
+
+  popularvideos();
+
+  async function search() {
+    let query = document.getElementById("searchbar").value;
+
+    let res = await fetch(
+      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyDU699faiwdFwLpcWGeWVS3aMgvvdRf1w0&maxResults=20&type=video&q=${query}`
+    );
+
+    let data = await res.json();
+
+    appendvideos(data);
+  }
+</script>
