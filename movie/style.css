@@ -1,4 +1,4 @@
-body {
+.body {
     background-color: rgb(5, 5, 51);
     color: aliceblue;
     font-family: "Georama", sans-serif;
@@ -15,7 +15,7 @@ body {
     text-decoration: underline;
     margin-bottom: 50px;
   }
-  input {
+  #search {
     width: 350px;
     font-size: 25px;
     outline: none;
@@ -93,4 +93,84 @@ body {
   }
   #popular-movies > div > img {
     width: 100%;
+  }
+  .modal{
+    width: 98%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, .7);
+    color:black;
+    position: absolute;
+    top: 0;
+    
+    justify-content: center;
+    align-items: center;
+    display: none;
+  }
+  .modal-content{
+    width: 500px;
+    height: 400px;
+    background-color: white;
+    opacity: 1;
+    border-radius: 4px;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+  }
+  .lg{
+    display: block;
+    margin: 15px auto;
+    width: 250px;
+    font-size: 20px;
+    outline: none;
+  }
+  .submit{
+    font-size: 26px;
+    width: 150px;
+    border-radius: 30px;
+    background-color: rgb(57, 79, 206);
+    color: white;
+    outline: none;
+  }
+  #close{
+    position: absolute;
+    top:15px;
+    right: 15px;
+    padding: 10px;
+    font-weight:600;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: rgb(245, 245, 245);
+    border-radius: 10px;
+  }
+  .login-register{
+    position: absolute;
+    top:10px;
+    right: 10px;
+    padding: 10px;
+  }
+  .login-register > button{
+    font-size: 20px;
+    margin: auto 5px;
+    outline: none;
+    background-color: rgb(16, 230, 123);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  #register-btn, #login-btn{
+    font-size: 20px;
+    border-radius: 30px;
+    margin: 0;
+    border: none;
+    padding: 10px;
+  }
+  #register-btn{
+    background-color: rgb(107, 83, 83);
+    color: blanchedalmond;
+  }
+  .reg-div{
+  display: block;
+  }
+  .log-div{
+  display: none;
   }

@@ -13,9 +13,11 @@
     <link rel="stylesheet" href="style.css" />
     <title>movie search</title>
   </head>
-  <body>
+  <body class="body">
     <h1 class="heading">Movie Khajana</h1>
-
+    <div class="login-register">
+      <button id="login-register">Register/Login</button>
+    </div>
     <input
       oninput="debounce(main,1000)"
       type="text"
@@ -27,6 +29,34 @@
     <div id="movie-details"></div>
     <h1 class="popular">Popular Movies</h1>
     <div id="popular-movies"></div>
+    <div class="modal">
+      <div class="modal-content">
+        <div id="close" onclick="cl()">X</div>
+        <button id="register-btn" onclick="reg()">Register</button>
+        <button id="login-btn" onclick="log()" >Login</button>
+        <div class="reg-div">
+          <p id="reg-msg"></p>
+          <form onsubmit="signup(event)" id="signup-form" action="">
+            <input class="lg" id="name" type="name" placeholder="Enter Name" required/>
+            <input class="lg" id="email" type="email" placeholder="Enter Email" required/>
+            <input class="lg" id="password" type="password" placeholder="Set Password" required/>
+            <input class="lg" id="username" type="text" placeholder="Set UserName" required/>
+            <input class="lg" id="mobile" type="mobile" placeholder="Enter Mobile Number" required/>
+            <input class="lg" id="description" type="text" placeholder="Description" required/>
+            <input class="lg submit" type="submit" />
+          </form>
+        </div>
+        <div class="log-div">
+          <p id="log-msg"></p>
+          <form onsubmit="login(event)" id="login-form" action="">
+            <input class="lg" id="user" type="text" placeholder="Enter UserName" required/>
+            <input class="lg" id="pass" type="password" placeholder="Enter Password" required/>
+            <input class="lg submit" type="submit" />
+          </form>
+
+        </div>
+      </div>
+    </div>
   </body>
 </html>
 
