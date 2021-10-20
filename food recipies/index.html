@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style/style.css">
+    <title>Foodieo</title>
+   
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <div id="search"></div>
+    <h1 class="heading">Hot Favorite</h1>
+    <div id="home"></div>
+  </body>
+</html>
+
+<script type="module">
+  import navbar from "./components/navbar.js";
+  import { getData, append } from "./scripts/scripts.js";
+
+  let navbar_div = document.getElementById("navbar");
+  navbar_div.innerHTML = navbar();
+
+  async function show() {
+    let res = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/filter.php?a=indian"
+    );
+
+    let data = await res.json();
+
+    home(data);
+  }
+  let mainpage = document.getElementById("home");
+
+  function home({ meals }) {
+    mainpage.innerHTML = null;
+
+    meals.forEach(({ strMeal, strMealThumb }) => {
+      let div = document.createElement("div");
+
+      let img = document.createElement("img");
+      img.src = strMealThumb;
+
+      let name = document.createElement("h3");
+      name.innerHTML = strMeal;
+
+      div.append(img, name);
+
+      mainpage.append(div);
+    });
+  }
+  show();
+
+  let btn = document.getElementById("srch");
+  btn.addEventListener("click", search);
+
+  async function search() {
+    let query = document.getElementById("query").value;
+
+    let response = getData(
+      `https://www.themealdb.com/api/json/v1/1/search.php?f=${query}`
+    );
+
+    response.then((res) => {
+      let search = document.getElementById("search");
+      
+      
+    
+      append(res, search);
+    });
+  }
+</script>
