@@ -15,16 +15,27 @@
   </head>
   <body>
     <div id="navbar"></div>
+    <h1 class="heading">Latest Recipes</h1>
     <div id="latest"></div>
   </body>
 </html>
 <script type="module">
     import navbar from './components/navbar.js';
-  import {getData,append} from './scripts/scripts.js';
+  import {getData,append,latest} from './scripts/scripts.js';
 
   let nav = document.getElementById("navbar");
 
   nav.innerHTML = navbar();
 
+  let lat = document.getElementById("latest");
+
+  let data = getData("https://www.themealdb.com/api/json/v1/1/categories.php")
   
+    data.then((res)=>{
+    console.log('res:', res)
+
+        latest(res,lat);
+    
+    })
+
 </script>

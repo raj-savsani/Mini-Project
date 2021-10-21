@@ -3,12 +3,12 @@ async function getData(url) {
 
   let data = await res.json();
 
-  return data.meals;
+  return data;
 }
 
 function append(data, container) {
   container.innerHTML = null;
-  data.forEach(
+  data.meals.forEach(
     ({
       strMeal,
       strCategory,
@@ -41,15 +41,15 @@ function append(data, container) {
       Ingredient.textContent =
         "Ingredient: " +
         strIngredient1 +
-        " " +
+        "," +
         strIngredient2 +
-        " " +
+        "," +
         strIngredient3 +
-        " " +
+        "," +
         strIngredient4 +
-        " " +
+        "," +
         strIngredient5 +
-        " " +
+        "," +
         strIngredient6;
 
       let Instructions = document.createElement("p");
@@ -62,4 +62,32 @@ function append(data, container) {
   );
 }
 
-export { getData, append };
+function latest(data, container) {
+  container.innerHTML = null;
+
+  data.categories.forEach(
+    ({
+      strCategory,
+      strCategoryThumb,
+      strCategoryDescription,
+      
+    }) => {
+      let main_div = document.createElement("div");
+
+      let img = document.createElement("img");
+      img.src = strCategoryThumb;
+
+      let cat = document.createElement("p");
+      cat.textContent = "Category: " + strCategory;
+
+      let Instructions = document.createElement("p");
+      Instructions.textContent = strCategoryDescription;
+
+      main_div.append(img, cat,Instructions);
+
+      container.append(main_div);
+    }
+  );
+}
+
+export { getData, append, latest };
